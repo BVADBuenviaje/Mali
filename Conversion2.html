@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Conversion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class = "nav-container">
+        <div class = "container" onclick = "myFunction(this)">
+            <div class = "bar1"></div>
+            <div class = "bar2"></div>
+            <div class = "bar3"></div>
+        </div>
+        <div class = "navbar" id = "mynav">
+            <a href="ITC.html">Home</a>
+            <a href = "Conversion1.html">Length Conversion</a>
+            <a class = "active" href = "Conversion2.html">Temperature Conversion</a>
+            <a href="NthFactorial.html">N Numbers</a>
+            <a href="Payroll.html">Payroll</a>
+            <a href = "taxcal.html">Income Tax</a>
+        </div>
+    </div>
+    <h1>Temperature Conversion</h1>
+    <select id = "operations" onchange = "operate_2()">
+        <option value = "ctf">Celsius to Fahrenheit</option>
+        <option value = "ftc">Fahrenheit to Celsius</option>
+    </select><br><br>
+    <label id = "label_a" for = "temp">Celsius: </label>
+    <input id = "temp" type = "number" placeholder = "0">
+    <label id = "label_b" for = "answer">Fahrenheit: </label>
+    <input id = "answer" type = "text" placeholder = "0" value = "32 °F" readonly> 
+
+    <script>
+    function myFunction(x) {
+        var navbar = document.getElementById("mynav");
+        navbar.classList.toggle("show");
+        x.classList.toggle("change");
+    }
+
+    function operate_2() {
+        var op = document.getElementById("operations").value;
+        document.getElementById("temp").value = '';
+        document.getElementById("answer").value = '';
+        switch(op) {
+            case 'ctf':
+                document.getElementById("label_a").innerHTML = "Celsius: ";
+                document.getElementById("label_b").innerHTML = "Fahrenheit: ";
+                document.getElementById("answer").value = "32 °F";
+                break;
+            case 'ftc':
+                document.getElementById("label_a").innerHTML = "Fahrenheit: ";
+                document.getElementById("label_b").innerHTML = "Celsius: ";
+                document.getElementById("answer").value = "-18 °C";
+                break;
+        }
+    }
+
+    document.getElementById("temp").addEventListener("keyup", ()=> {
+        let op = document.getElementById("operations").value;
+        if (op == 'ctf') {
+            var celsius, ans;
+            celsius = document.getElementById("temp").value * 1;
+
+            ans = ((celsius * 9) / 5 + 32).toFixed(0);
+            document.getElementById("answer").value = ans + " °F";}
+        else if (op == 'ftc') {
+            var fahrenheit, ans;
+            fahrenheit = document.getElementById("temp").value * 1;
+
+            ans = ((fahrenheit - 32) * 5 / 9).toFixed(0);
+            document.getElementById("answer").value = ans + " °C";}
+        });
+        
+    </script>
+</body>
+</html>

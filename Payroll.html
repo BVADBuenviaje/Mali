@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Payroll Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class = "nav-container">
+        <div class = "container" onclick = "myFunction(this)">
+            <div class = "bar1"></div>
+            <div class = "bar2"></div>
+            <div class = "bar3"></div>
+        </div>
+        <div class = "navbar" id = "mynav">
+            <a href="ITC.html">Home</a>
+            <a href = "Conversion1.html">Length Conversion</a>
+            <a href = "Conversion2.html">Temperature Conversion</a>
+            <a href="NthFactorial.html">N Numbers</a>
+            <a class = "active" href="Payroll.html">Payroll</a>
+            <a href = "taxcal.html">Income Tax</a>
+        </div>
+    </div>
+
+    <h1>Payroll Calculator</h1>
+    <div id = "payroll-table">
+        <label for = "name">Employee Name: </label><br>
+        <input id = "name" class = "name_emp" type = "text"><br><br>
+        <label for = "dw">Number of Days Worked: </label> <br>
+        <input id = "dw" type = "number"><br><br>
+        <label for = "paid">Daily Rate: </label> <br>
+        <input id = "paid" type = "number"><br><br>
+        <label for = "ded">Deduction Amount: </label> <br>
+        <input id = "ded" type = "number"><br> <br>
+        <button id = "enter">Submit</button>
+        <button id = "new">Clear</button>
+    </div> <br>
+
+    <h3 id = "he">Delete an entry or Delete the List</h3>
+
+    <div id = "del-table">
+        <label for = "delitem">Enter index of employee to remove: </label>
+        <input id = "delitem" type = "number">
+        <button id = "del">Remove</button> <br><br>
+        <button id = "delist">Delete List</button>
+    </div>
+    
+    <div id = "tab">
+        <h2>Employee Table</h2>
+        <table id = "pay" border = 1>
+            <thead>
+                <tr>
+                    <td id = "no">No.</td>
+                    <td class = "dat">Employee Name</td>
+                    <td class = "dat">Days Worked</td>
+                    <td class = "dat">Daily Rate</td>
+                    <td class = "dat">Gross Pay</td>
+                    <td class = "dat">Deduction Amount</td>
+                    <td class = "dat">Net Pay</td>
+                </tr>
+            </thead>
+            <tbody id = "body">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total Paid: </td>
+                    <td id = "total">₱ 0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    
+    <dialog id = "dlgRemoveCancel">
+        <form method = "dialog">
+            <h4 id = "dlgmsg"></h4>
+            <button id = "btnRemove" value  ="confirm">Confirm</button>
+            <button id = "btnCancel" value  ="cancel">Cancel</button>
+        </form>
+    </dialog>
+
+    <script>
+    var tb = [];
+    function myFunction(x) {
+        var navbar = document.getElementById("mynav");
+        navbar.classList.toggle("show");
+        x.classList.toggle("change");
+    }
+    function computeGross(x, y) {
+        return x * y;
+    }  
+    function computeNet(a, b){
+        return a - b;
+    }
+    function showlist() {
+        var i, l, ln, tbody, tablebod, tablefoot, totalpaid;
+
+        tablebod = document.getElementById("body");
+        tablebod.innerHTML = ' ';
+        tablefoot = document.getElementById("total");
+
+        l = tb.length;
+
+        for(i = 0, totalpaid = 0, tbody = " "; i < l; i++){
+        ln = i + 1;
+        tbody += "<tr>"
+            + "<td>" + ln + "</td>"
+            + "<td>" + tb[i].name + "</td>"
+            + "<td>" + tb[i].days + "</td>"
+            + "<td>" + "₱ " + (tb[i].rate).toFixed(2) + "</td>"
+            + "<td>" + "₱ " + (tb[i].gross).toFixed(2) + "</td>"
+            + "<td>" + "₱ " + (tb[i].ded).toFixed(2) + "</td>"
+            + "<td>" + "₱ " + (tb[i].net).toFixed(2) + "</td>" + "</tr>";
+
+            totalpaid += tb[i].net;
+        }
+
+        tablebod.innerHTML = tbody;
+        tablefoot.innerHTML = "₱ " + (totalpaid).toFixed(2);
+    }
+
+    function deletelist() {
+        tb = [];
+    }
+
+(() => {
+    document.getElementById("new").addEventListener("click", ()=>{
+        document.getElementById("name").value = '';
+        document.getElementById("dw").value = '';
+        document.getElementById("paid").value = '';
+        document.getElementById("ded").value = '';
+    });
+
+    document.getElementById("enter").addEventListener("click", ()=>{
+        var tbody = " ";
+        var profile = {
+            "name" : "0",
+            "days" : "0",
+            "rate" : "0",
+            "gross" : "0",
+            "ded" : "0",
+            "net" : "0",
+        };
+
+        profile.name = document.getElementById("name").value;
+        profile.days = document.getElementById("dw").value * 1;
+        profile.rate = document.getElementById("paid").value * 1;
+        profile.ded = document.getElementById("ded").value * 1;
+
+        profile.gross = computeGross(profile.days, profile.rate);
+        profile.net = computeNet(profile.gross, profile.ded);
+
+        if (profile.name == ""){
+            alert("Please fill in the name.");}
+        else if (profile.days == ""){
+            alert("Please fill in the number of days worked.");}
+        else if (profile.rate == ""){
+            alert("Please fill in the daily rate.");}
+        else {
+            tb.push(profile);        
+            showlist();}
+    });
+
+    document.getElementById("del").addEventListener("click", ()=>{
+        var x, l;
+
+        x = document.getElementById("delitem").value * 1;
+
+        --x;
+        l = tb.length
+
+        if (x>=0 && x<l) {
+            document.getElementById("dlgmsg").innerHTML= "Remove employee at index " + (x+1) + "?"; 
+            dlgRemoveCancel.showModal();  
+        }
+    });
+
+    document.getElementById("delist").addEventListener("click", ()=>{
+        
+        document.getElementById('dlgmsg').innerHTML = "Delete the list?";
+        dlgRemoveCancel.showModal();
+
+    });
+
+    btnRemove.addEventListener("click", ()=>{
+        dlgRemoveCancel.returnValue = "confirm";
+        dlgRemoveCancel.close("confirm");
+    });
+
+    btnCancel.addEventListener("click", ()=>{
+        dlgRemoveCancel.returnValue = "cancel";
+        dlgRemoveCancel.close("cancel");
+    });
+
+    dlgRemoveCancel.addEventListener("close",(e)=>{
+        var rst = e.target.returnValue;
+        var index = document.getElementById("delitem").value * 1;
+        var lblmsg = document.getElementById("dlgmsg").innerHTML;
+        if (rst == "confirm") {
+            if (lblmsg == "Delete the list?" ){ 
+               deletelist();
+               showlist();
+            }  else if (lblmsg == "Remove employee at index " + index + "?"){
+                var x = document.getElementById("delitem").value * 1 - 1;
+                tb.splice(x,1);
+                showlist();
+                document.getElementById("delitem").value='';
+
+            } 
+        } 
+    });
+})();
+    </script>
+</body>
+</html>

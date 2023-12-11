@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length Conversion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class = "nav-container">
+        <div class = "container" onclick = "myFunction(this)">
+            <div class = "bar1"></div>
+            <div class = "bar2"></div>
+            <div class = "bar3"></div>
+        </div>
+        <div class = "navbar" id = "mynav">
+            <a href="ITC.html">Home</a>
+            <a class = "active" href = "Conversion1.html">Length Conversion</a>
+            <a href = "Conversion2.html">Temperature Conversion</a>
+            <a href="NthFactorial.html">N Numbers</a>
+            <a href="Payroll.html">Payroll</a>
+            <a href = "taxcal.html">Income Tax</a>
+        </div>
+    </div>
+    <h1>Length Conversion</h1>
+    <select id = "options" onchange = "operate_1()">
+        <option value = "mtf">Meters to Feet</option>
+        <option value = "ftm">Feet to Meters</option>
+    </select><br><br>
+    <label id = "label_1" for = "length">Meters: </label>
+    <input id = "length" type = "number" placeholder = "0">
+    <label id = "label_2" for = "answer">Feet: </label>
+    <input id = "answer" type = "text" value = "0 ft" readonly> 
+    
+    <script>
+    function myFunction(x) {
+        var navbar = document.getElementById("mynav");
+        navbar.classList.toggle("show");
+        x.classList.toggle("change");
+    }
+
+    function operate_1() {
+        var op = document.getElementById("options").value;
+        document.getElementById("length").value = '';
+        document.getElementById("answer").value = '';
+        switch(op) {
+            case 'mtf':
+                document.getElementById("label_1").innerHTML = "Meters: ";
+                document.getElementById("label_2").innerHTML = "Feet: ";
+                document.getElementById("answer").value = "0 ft";
+                break;
+            case 'ftm':
+                document.getElementById("label_1").innerHTML = "Feet: ";
+                document.getElementById("label_2").innerHTML = "Meters: ";
+                document.getElementById("answer").value = "0 m";
+                break;
+        }
+    }
+
+    document.getElementById("length").addEventListener("keyup", ()=> {
+        let op = document.getElementById("options").value;
+        if (op == 'mtf') {
+            var met, ans;
+            met = document.getElementById("length").value * 1;
+
+            ans = (met * 3.28084).toFixed(0);
+            document.getElementById("answer").value = ans + " ft";}
+        else if (op == 'ftm') {
+            var feet, ans;
+            feet = document.getElementById("length").value * 1;
+
+            ans = (feet * 0.3048).toFixed(0);
+            document.getElementById("answer").value = ans + " m";}
+        });
+     
+    </script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+#hpage {
+    margin-top: 35px;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+}
+select {
+    margin-left: 42px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 17px;
+    height: 35px;
+    width: fit-content;
+    border-radius: 15px;
+    cursor: pointer;
+}
+button {
+    cursor: pointer;
+    border-radius: 7px;
+    transition: transform 0.3s ease;
+}
+button:hover {
+    transform: scale(1.1);
+}
+input {
+    text-align: right;
+}
+#no {
+    width: 30px;
+}
+#he {
+    font-size: 35px;
+}
+.dat {
+    width: 120px;
+}
+.data {
+    width: 120px;
+}
+#tab {
+    position: absolute;
+    top: 57px;
+    left: 750px;
+    text-align: center;
+}
+#del {
+    position: absolute;
+    top: 55px;
+    left: 60px;
+}
+#delist {
+    position: absolute;
+    top: 100px;
+    left: 60px;
+}
+#enter {
+    margin-left: 43px;
+}
+#result_i {
+    position: absolute;
+    top: 357px;
+    left: 48px;
+    text-align: right;
+}
+#clear {
+    position: absolute;
+    top: 357px;
+    left: 230px;
+}
+#pay {
+    border: 1;
+    padding: 1;
+    min-width: 70px;
+    margin-left: 43px;
+    border-color: whitesmoke;
+    color: white;
+}
+body {
+    background: linear-gradient(rgb(112, 21, 112), rgb(24, 2, 65));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+     }
+#label_x {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    color: aliceblue;
+    margin-left: 43px;
+    margin-top: 20px;
+    font-size: 40px;
+    z-index: 1;
+}
+h1, h2, h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    color: aliceblue;
+    margin-left: 43px;
+    margin-top: 20px;
+    font-size: 60px;
+    z-index: 1;
+    }
+#Hello {
+    margin-top: 7px;
+    position: absolute;
+    left: 10px;
+    color: aliceblue;
+    font-family: Helvetica, sans-serif;
+    font-size: x-large;
+    z-index: 0;
+    }    
+label, p {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 43px;
+    color: white;
+}
+.nav-container {
+    margin-left: 0px;
+    margin-top: 0;
+    display: flex;
+    position: relative;
+    z-index: 2;
+    }
+.container {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+    z-index: 5;
+    }
+.container:hover{
+    background-color: rgb(82, 5, 112);
+    transform: scale(1.1);
+    }
+.bar1, .bar2, .bar3 {
+    margin-top: 20px;
+    width: 30px;
+    height: 5px;
+    background-color: aliceblue;
+    margin: 6px;
+    transition: 0.4s;
+    }
+.change .bar1 {
+    transform: translate(0,11px) rotate(-45deg);
+    }
+.change .bar2 {
+    opacity: 0;
+    }
+.change .bar3 {
+    transform: translate(0,-11px) rotate(45deg);
+    }
+ .navbar {
+    background-color: rgb(33, 33, 33);
+    overflow: hidden;
+    width: 100%;
+    top: 0;
+    left: -100%;
+    transform: translateX(-2000px);
+    transition: 0.5s;
+    z-index: 4;
+    }
+.navbar a:hover {
+    background-color: rgb(101, 100, 102);
+    color: rgb(190, 190, 190);
+    transform: scale(1.1);
+
+    }
+.navbar a {
+    float: left;
+    font-family: Arial;
+    color:rgb(80, 80, 80);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    transition: transform 0.3s ease;
+    }
+ .navbar a.active {
+    background-color: rgb(62, 62, 62);
+    color: white
+    }
+ .navbar.show {
+    transform: translateX(0);
+    left: 0;
+    }
+
+/*===========================*/
+#payroll-table {
+    margin-left: 50px;
+    border: 1px solid;
+    border-color: white;
+    background-color: rgb(34, 11, 77);
+    border-radius: 20px;
+    padding: 20px;
+    width: 550px;
+    height: 280px;
+    box-shadow: 10px 10px 10px #181818;
+}    
+
+#del-table {
+    position: relative;
+    margin-top: 40px;
+    margin-left: 50px;
+    border: 1px solid;
+    border-color: white;
+    background-color: rgb(34, 11, 77);
+    border-radius: 20px;
+    padding: 20px;
+    width: 550px;
+    height: 100px;
+    box-shadow: 10px 10px 10px #181818;
+}
+
+.name_emp {
+    text-align: left;
+    width: 450px;
+    margin-left: 43px;
+}
+
+#dw, #paid, #ded {
+    text-align: right;
+    width: 450px;
+    margin-left: 43px;
+}
+
+#dlgRemoveCancel {
+    position: relative;
+    width: 400px;
+    height: 180px;
+    border: none;
+    border-radius: 20px;
+    padding-left: 25px;
+    padding-right: 30px;
+}
+
+#dlgmsg {
+    position: absolute;
+    left: 50%;
+    top: 18%;
+    width: 370px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 40px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+#btnRemove, #btnCancel {
+    text-align: center;
+    font-size: 20px;
+    height: 27px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+#btnRemove {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+}
+
+#btnCancel {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+}
+
+/*===========================*/
+#name_1 {
+    text-align: left;
+    width: 375px;
+}
+/*===========================*/
+
+#header-back {
+    margin: 8px;
+    min-width: fit-content;
+    min-height: fit-content;
+    height: 750px;
+    background-image: url(back.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    opacity: 100%;
+    padding: 30px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: 25px;
+    position: relative; /* Add this to make positioning of text relative to this div */
+}
+
+#bgcol {
+    position: absolute;
+    top: 13%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    /*display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;*/
+    width: 1000px;
+    height: 80px;
+    text-align: center;
+    font-size: 80px;
+    font-weight: 800;
+    color: rgb(252, 252, 252);
+    opacity: 90%; /* Adjust opacity as needed */
+    border-radius: 20px;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#program-container {
+    position: absolute;
+    width: 1800px;
+    height: 270px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 30px;
+    font-family: Helvetica, sans-serif;
+}
+
+#prog-contents {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#prog-contents a {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 230px;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: Helvetica, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 60%;
+    transition: transform 0.3s ease;
+}
+
+#prog-contents a:hover {
+    transform: scale(1.1); /* Increase the size on hover */
+    opacity: 100%;
+}
+
+#home {
+    background-image: url(back7.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#len {
+    background-image: url(back2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#tem {
+    background-image: url(back3.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#nth {
+    background-image: url(back4.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#prl {
+    background-image: url(back9.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#inc {
+    background-image: url(back6.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}

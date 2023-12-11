@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nth Values</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class = "nav-container">
+        <div class = "container" onclick = "myFunction(this)">
+            <div class = "bar1"></div>
+            <div class = "bar2"></div>
+            <div class = "bar3"></div>
+        </div>
+        <div class = "navbar" id = "mynav">
+            <a href="ITC.html">Home</a>
+            <a href = "Conversion1.html">Length Conversion</a>
+            <a href = "Conversion2.html">Temperature Conversion</a>
+            <a class = "active" href="NthFactorial.html">N Numbers</a>
+            <a href="Payroll.html">Payroll</a>
+            <a href = "taxcal.html">Income Tax</a>
+        </div>
+    </div>
+
+    <h1>Nth Number Operations</h1> 
+    <select id = "optype" onchange = "operations()">
+        <option value = "factorial">Factorial</option>
+        <option value = "sum">Sum</option>
+        <option value = "average">Average</option>
+    </select><br>
+
+    <label for = "numb">Enter a Number: </label>
+    <input id = "numb" type = "text">
+    <button id = "compute">Compute</button>
+    <br><br>
+    <label for = "output">Answer: </label>
+    <input id = "output" type = "number" readonly>
+    <button id ="clear_1">Clear</button><br>
+    <h3 id = "label_x">The sequence of factorials:</h3><br>
+    <p id = "conti"></p> <br> <br>
+
+    <script>
+    function myFunction(x) {
+        var navbar = document.getElementById("mynav");
+        navbar.classList.toggle("show");
+        x.classList.toggle("change");
+    }
+
+    function operations() {
+        var op = document.getElementById("optype").value;
+        document.getElementById("numb").value = '';
+        document.getElementById("output").value = " ";
+        document.getElementById("conti").innerHTML = " ";
+        switch(op) {
+            case 'factorial':
+                document.getElementById("label_x").innerHTML = "The sequence of factorials:"
+                break;
+            case 'sum':
+                document.getElementById("label_x").innerHTML = "The sum of the first _ numbers:";
+                break;
+            case 'average':
+                document.getElementById("label_x").innerHTML = "The sum of the first _ numbers:";
+                break;
+            default:
+                document.getElementById("conti").innerHTML = 'Invalid.';
+        }
+    }
+    
+    document.getElementById("compute").addEventListener("click", ()=> {
+        let op = document.getElementById("optype").value;
+        if (op == 'factorial') {
+            var fac = document.getElementById("numb").value * 1;
+            var randstring = 1;
+            var con = " ";
+            while (fac > 1) {
+                randstring *= fac;
+                if (fac == 2) {
+                    con += randstring;
+                } else {
+                con += randstring + ", ";}
+                fac--;}
+            document.getElementById("output").value = randstring;
+            document.getElementById("conti").innerHTML = con;}
+        else if (op == 'sum') {
+            var n = document.getElementById("numb").value * 1;
+            var randstring = 0;
+            var base = 1;
+            var con = " ";
+            do {
+                randstring += base;
+                if (base == n) {
+                    con += randstring;
+                } else {
+                con += randstring + ", ";}
+                base++;
+            } while (base <= n);
+            document.getElementById("label_x").innerHTML = "The sum of the first " + n + " numbers:";
+            document.getElementById("output").value = randstring;
+            document.getElementById("conti").innerHTML = con;}
+        else {
+            var n = document.getElementById("numb").value * 1;
+            var randstring = 0;
+            var con = " ";
+            var av;
+            for ( var base = 1; base <= n; base++){
+                randstring += base;
+                if (base == n) {
+                    con += base;
+                } else {
+                con += base + ", ";}}
+            av = (randstring / n).toFixed(0);
+            document.getElementById("label_x").innerHTML = "The first " + n + " numbers:";
+            document.getElementById("output").value = av;
+            document.getElementById("conti").innerHTML = con;}
+        });
+  
+    document.getElementById("clear_1").addEventListener("click", ()=> {
+        document.getElementById("numb").value = "";
+        document.getElementById("output").value = "";
+        document.getElementById("conti").innerHTML = "";
+        document.getElementById("label_x").innerHTML = "";
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>ITC Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class = "nav-container">
+        <div class = "container" onclick = "myFunction(this)">
+            <div class = "bar1"></div>
+            <div class = "bar2"></div>
+            <div class = "bar3"></div>
+        </div>
+        <div class = "navbar" id = "mynav">
+            <a class = "active" href="ITC.html">Home</a>
+            <a href = "Conversion1.html">Length Conversion</a>
+            <a href = "Conversion2.html">Temperature Conversion</a>
+            <a href = "NthFactorial.html">N Numbers</a>
+            <a href = "Payroll.html">Payroll</a>
+            <a class = "active" href = "taxcal.html">Income Tax</a>
+        </div>
+    </div>
+    <h1>Income Tax Calculator</h1> <br>
+    <label for = "name_1">Name: </label>
+    <input id = "name_1" type = "text"><br><br>
+    <label for = "intax">Taxable income: </label>
+    <input id = "intax" type = "number" placeholder = "0">
+    <button id = "compute">Compute</button> 
+    <button id = "new">Clear</button><br> <br>
+    
+    <p id = "nem"></p>
+    
+    <input id = "result_i" type = "text" placeholder = "0" readonly>
+    <button id = "clear">Clear Entry</button> 
+
+    <script>
+    function myFunction(x) {
+        var navbar = document.getElementById("mynav");
+        navbar.classList.toggle("show");
+        x.classList.toggle("change");
+    }
+
+    document.getElementById("compute").addEventListener("click", ()=>{
+        var tax, res, tem, neym;
+        res = 0;
+        tem = 0;
+
+        tax = document.getElementById("intax").value*1;
+        neym = document.getElementById("name").value;
+
+        document.getElementById("nem").innerHTML = "Hello, " + neym + "! Your income tax is...";
+ 
+        if (tax <= 250000) {
+            document.getElementById("result_i").value = 0;
+        } else if (tax >250000 && tax <= 400000) {
+            tem = tax - 250000;
+            res = (tem * 0.2).toFixed(2);
+            document.getElementById("result_i").value = "₱ " + res;
+        } else if (tax > 400000 && tax <= 800000) {
+            tem = tax - 400000;
+            res = (tem * 0.25 + 30000).toFixed(2);
+            document.getElementById("result_i").value = "₱ " + res;
+        } else if (tax > 800000 && tax <= 2000000) {
+            tem = tax - 800000;
+            res = (tem * 0.3 + 130000).toFixed(2);
+            document.getElementById("result_i").value = "₱ " + res;
+        } else if (tax > 2000000 && tax <= 8000000) {
+            tem = tax - 2000000;
+            res = (tem * 0.32 + 490000).toFixed(2);
+            document.getElementById("result_i").value = "₱ " + res;
+        } else {
+            tem = tax - 8000000;
+            res = (tem * 0.35 + 2410000).toFixed(2);
+            document.getElementById("result_i").value = "₱ " + res;
+        }
+    });
+
+    document.getElementById("new").addEventListener("click", ()=>{
+        document.getElementById("name").value = '';
+        document.getElementById("intax").value = '';
+    });
+
+    document.getElementById("clear").addEventListener("click", ()=>{
+        document.getElementById("name").value = '';
+        document.getElementById("intax").value = '';
+        document.getElementById("nem").innerHTML = '';
+        document.getElementById("result_i").value = '';
+
+    });
+
+
+    </script>
+</body>
+</html>
